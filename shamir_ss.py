@@ -2,6 +2,7 @@ import random
 '''
 SHARES GENERATION
 '''
+<<<<<<< HEAD
 def generate(s, t, n, p):#p must be a prime number larger than n and k must be an integer from 0 to p-1
     polynomial = [s]
     for i in range(t-1):
@@ -19,6 +20,8 @@ def is_positive_integer(value):
     except ValueError:
         return False
     
+=======
+>>>>>>> 4bced1a (first push)
 def is_prime(number):#return true if the numebr is prime
     if number <= 1:
         return False
@@ -84,5 +87,25 @@ def interpolate(x_values, y_values, p):
     return secret
 
 
+<<<<<<< HEAD
 
 
+=======
+def generate(s, t, n, p):#p must be a prime number larger than n and k must be an integer from 0 to p-1
+    polynomial = [s]
+    for i in range(t-1):
+        coefficent = random.randint(1, p-1)
+        polynomial.append(coefficent)
+
+    shares = generate_shares(polynomial, n, p)
+    return shares
+
+
+def is_positive_integer(value):
+    try:
+        int_value = int(value)
+        return int_value >= 0
+    except ValueError:
+        return False
+
+>>>>>>> 4bced1a (first push)

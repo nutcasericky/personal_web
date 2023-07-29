@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from flask import Flask, request, render_template
+=======
+from flask import Flask, request, render_template, send_file
+>>>>>>> 4bced1a (first push)
 
 app = Flask(__name__)
 
@@ -19,6 +23,7 @@ def swimming():
 def powerlifting():
     return render_template("powerlifting.html")
 
+<<<<<<< HEAD
 @app.route("/crypto/ca_ss", methods = ["POST", "GET"])
 def ca_ss():
     if request.method == "GET":
@@ -106,6 +111,8 @@ def ca_process_shares():
         error = "Invalid input format. Please enter a positive integer."
         return render_template("ca_result.html", participants=shares, t=t, n=n, p=p, s=s, total=p_minimun, no=no, error=error, number=no)
 
+=======
+>>>>>>> 4bced1a (first push)
 @app.route("/crypto/sss", methods = ["POST", "GET"])
 def sss():
     if request.method == "GET":
@@ -121,11 +128,16 @@ def sss():
         s = int(request.form['s'])
         p = int(request.form['p'])
 
+<<<<<<< HEAD
         if p <= n or p <= s or n < t or not shamir_ss.is_prime(p) or t <= 0 or n <= 0 or p <= 0 or int(t) != t or int(n) != n or int(p) != p:
             if not shamir_ss.is_prime(p) or p <= s: error = "P needs to be a prime number and bigger than s and n."
             elif t > n: error = "Please input t < n"
             else: error = "Please input positive integers."
 
+=======
+        if p <= n or p <= s or not shamir_ss.is_prime(p) or t <= 0 or n <= 0 or p <= 0 or int(t) != t or int(n) != n or int(p) != p:
+            error = "Please check the number requirement and enter again."
+>>>>>>> 4bced1a (first push)
             return render_template('sss.html', error=error)
         
         shares = shamir_ss.generate(s, t, n, p)

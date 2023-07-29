@@ -76,6 +76,7 @@
       background-color: #fff;
     }
 
+<<<<<<< HEAD
     a:hover {
             color: #0056b3;
             background-color: #f0f0f0;
@@ -99,6 +100,8 @@
             text-decoration: none;
     }
 
+=======
+>>>>>>> 4bced1a (first push)
   </style>
 </head>
 <body>
@@ -114,6 +117,7 @@
       secret sharing scheme is normally initialized by a trusted dealer who securely
       transfers a piece of information related to the secret, called a share, to each
       participant in the scheme. When t number of participants come together they can recover the secret.
+<<<<<<< HEAD
       Shamir Secret Sharing Scheme(SSS) makes use of polynomial f(x) with higheset degree t-1 
       which can be reconstructed using Langrange's Interpolation formula when t number of points 
       on the graph of f(x) are provided. 
@@ -134,10 +138,26 @@
       to each participant.
       <h4>Reconstruction phase</h4>
       1. A minimum of t number of shares is needed. Then, using
+=======
+    </p>
+    <p>
+      I have implemented SSS with Python, which can be tried out below. The source code 
+      can be found on the link at the bottom of the home page.
+      
+      A polynomial f(x) is generated with degree at most t-1, coefficients belong to a Z_p(p is a prime number
+      larger than n and s) and k the value of the original secret as constant. 
+      Randomly chosen values belonging to Z_p will be substituted into the polynomials and evaluate corresponding
+      y values. The n number of shares with its corresponding x will be sent individually to each participant.
+      To reconstruct the original secret, a minimum of t number of shares is needed. Then, using
+>>>>>>> 4bced1a (first push)
       Lagrange's Interpolation formula, we can interpolate the value of y at x = 0 which is the secret.
     </p>
   </div>
 
+<<<<<<< HEAD
+=======
+  <h1>Implementation</h1>
+>>>>>>> 4bced1a (first push)
   <form action="/crypto/sss" method="post">
     <label for="n">Enter the number of total participants n:</label>
     <input type="number" name="n" id="n">
@@ -157,10 +177,13 @@
     <p style="color: red;">{{ error }}</p>
     {% endif %}
   </form>
+<<<<<<< HEAD
 
   <footer>
     <a href="https://github.com/nutcasericky/personal_web">Source code is uploaded here.</a>
   </footer>
 
+=======
+>>>>>>> 4bced1a (first push)
 </body>
 </html>
