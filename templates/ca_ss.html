@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>cumulative array secret sharing scheme</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      width: 100%;
+      background-color: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .content-container {
+      max-width: 800px;
+      width: 80%;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    form label,
+    form input {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    form input[type="submit"] {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    form input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .home-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 8px 12px;
+      background-color: #fff;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .home-button:hover {
+      background-color: #fff;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>cumulative array secret sharing scheme</h1>
+  </header>
+  <a href="/" class="home-button">Home</a>
+  <div class="content-container">
+    <h1>What is it about</h1>
+    <p>
+      A secret sharing scheme is a method of protecting a secret among a group of
+      participants(n) in such a way that only certain specified subsets of the participants(t)
+      (those belonging to an access structure) can reconstruct the secret. A
+      secret sharing scheme is normally initialized by a trusted dealer who securely
+      transfers a piece of information related to the secret, called a share, to each
+      participant in the scheme. When t number of participants come together they can recover the secret.
+      Cumulative array secret sharing schemes utilises the monotone formulas corresponding to the access
+      structures to obtain a cumulative scheme.
+    </p>
+    <h1>Implementation</h1>
+    <p>
+      I have implemented a cumulative array secret sharing scheme with Python, which can be tried out below. The source code 
+      can be found on the link at the bottom of the home page.
+      The more detailed explanation of the implementation of the scheme is as followed:
+      <h4>Set up phase</h4>
+      1. The dealer is asked to input total number of participants n, number of participants required
+      to recover the secret s(s is smaller than n), the secret s and a prime number that is greater than 
+      s and m the size of the maximum unauthorised subset(nC(t-1)).<br>
+      2. A n*m cumulative array is generated C_r = [b_ij] each row indicates one participant with boolean values
+      which decide whether a corresponding share is given to that participant.<br>
+      3. Shamir Secret Sharing Scheme(m, m) is used to generate m shares S_j, 1 <= j <= m, for each element in 
+      the maximum unauthorised subset and S_j is given to participant P_i, if and only if b_ij = 1.
+      <h4>Reconstruction phase</h4>
+      1. A minimum of t number of shares is needed. Then, we combine their shares, we can obtain all
+      the original shares. After that, using Lagrange's Interpolation formula, we can interpolate the value of y at x = 0 which is the secret.
+    </p>
+    <h4>Assessment of the Scheme</h4>
+    <p>As the number of participants and the size access structure increase, the scheme ca result in large number
+      of shares generated and distributed to each participant. From the session below, we can try out different
+      numbers of n and t to observe the size of cumulative array generated. Many scientists have been working on reducing the number
+      of shares generated such as secret sharing by generalised cumulative array(Shoulun Long, 2006). 
+    </p>
+  </div>
+
+  <h1>Implementation</h1>
+  <form action="/crypto/ca_ss" method="post">
+    <label for="n">Enter the number of total participants n:</label>
+    <input type="number" name="n" id="n">
+
+    <label for="t">Enter the number of people required to reveal the secret t:</label>
+    <input type="number" name="t" id="t">
+
+    <label for="s">Enter the secret s:</label>
+    <input type="number" name="s" id="s">
+
+    <label for="p">Enter a prime number p(larger than n choose t-1 mathematically):</label>
+    <input type="number" name="p" id="p">
+
+    <input type="submit" value="Submit">
+
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+  </form>
+</body>
+</html>

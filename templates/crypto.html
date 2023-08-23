@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cryptography Study</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        p {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        a {
+            display: block;
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        a:hover {
+            color: #0056b3;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        
+
+        .home-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .home-button:hover {
+            background-color: #fff;
+        }
+        
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0; /* Adjust this to control the left edge of the footer */
+            width: 100%; /* Set the width to 100% to span the entire viewport */
+            background-color: #f7f7f7;
+            color: #333;
+            text-align: center;
+            padding: 1.5rem;
+            box-sizing: border-box; /* Include padding in the width */
+        }
+
+        footer a {
+            display: inline;
+            background-color: #f7f7f7;
+            color: #333;
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>My Study in Cryptography</h1>
+    </header>
+    <a href="/" class="home-button">Home</a>
+    <div class="container">
+        <p>Due to my interest in the field of computer science, I have explored the field of cryptography with the guidance of Prof Wang from Nanyang Technological University in my spare time. My project, which is on the use of cumulative array and perfect hash family in threshold secret-sharing scheme, has also attended SSEF (Singapore Science and Engineering Fair). The following are some of my study results:</p>
+
+        <p>
+            <a href="{{ url_for('ssef_project') }}">SSEF Research Project Report</a>
+            <a href="{{ url_for('sss') }}">Shamir Secret Sharing Scheme</a>
+            <a href="{{ url_for('ca_ss') }}">Cumulative Array Secret Sharing Scheme</a>
+        </p>
+    </div>
+
+    <footer>
+        <a href="https://github.com/nutcasericky/personal_web">Source code is uploaded here.</a>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shares Generated</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 1.5rem 0;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    label,
+    input {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .form-row label,
+    .form-row input {
+      flex: 1;
+    }
+
+    .home-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 8px 12px;
+      background-color: #fff;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .home-button:hover {
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Shares Generated</h1>
+  </header>
+  <a href="/" class="home-button">Home</a>
+  <div class="container">
+    <p>
+      {% for participant in participants %}
+        P{{ loop.index }}: <br>
+        {% for shares in participant %}
+            share {{ loop.index }}: {{ shares[0] }}  y: {{ shares[1] }} <br>
+        {% endfor %}
+      {% endfor %}
+    </p>
+  </div>
+  <div class="container">
+    <p>
+        Number of total shares generated: {{ total }} <br>
+        Number of shares distributed to each participant: {{ number }} <br>
+    </p>
+  </div>
+  <div class="container">
+    <h2>Enter Shares to reconstruct the key</h2>
+    <form action="/crypto/ca_ss/ca_process_shares" method="post">
+        <input type="hidden" name="n" value="{{ n }}"> 
+        <input type="hidden" name="p" value="{{ p }}"> 
+        <input type="hidden" name="t" value="{{ t }}"> 
+        <input type="hidden" name="s" value="{{ s }}"> 
+        <input type="hidden" name="shares" value="{{ participants }}"> 
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        {% for i in range(t) %}
+        <h4>P{{ i + 1 }}</h4>
+            {% for j in range(1, no + 1) %}
+            <div class="form-row">
+            <label for="x_value{{ j * i + j }}">X Value {{ j }}:</label>
+            <input type="number" id="x_value{{ j * i + j }}" name="x_value{{ j * i + j }}">
+            <label for="y_value{{ j * i + j }}">Y Value {{ j }}:</label>
+            <input type="number" id="y_value{{ j * i + j }}" name="y_value{{ j * i + j }}">
+            </div>
+            {% endfor %}
+        {% endfor %}
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+</html>
